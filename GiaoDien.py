@@ -112,13 +112,23 @@ def bangxephang(menuScreen: pygame.Surface,) -> None:
     file = open('bangxephang.txt')
     list = file.readlines()
     for i in range(len(list)):
-        if i< 3:
+        if i < 3:
             pygame.draw.rect(menuScreen, COLORBXH[i], (145, 90 + 43 * i, 240, 38), border_radius=10)
             font = pygame.font.SysFont('Bahnschrift', 20)
             text = font.render(list[i].rstrip(), True, (0, 0, 0))
             menuScreen.blit(text, (250, 93 + 43 * i))
+
+            if i == 0:
+                top1 = pygame.image.load('icon/top1.png')
+                menuScreen.blit(top1, (135, 86 + 43 * i))
+            elif i == 1:
+                top2 = pygame.image.load('icon/top2.png')
+                menuScreen.blit(top2, (140, 90 + 43 * i))
+            else:
+                top3 = pygame.image.load('icon/top3.png')
+                menuScreen.blit(top3, (145, 93 + 43 * i))
         else:
-            pygame.draw.rect(menuScreen, (240,248,255),(145, 90 + 43*i,240,38), border_radius=10)
+            pygame.draw.rect(menuScreen, (240, 248, 255), (145, 90 + 43 * i, 240, 38), border_radius=10)
             font = pygame.font.SysFont('Bahnschrift', 20)
             text = font.render(list[i].rstrip(), True, (0, 0, 0))
-            menuScreen.blit(text, (250, 93 + 43*i))
+            menuScreen.blit(text, (250, 93 + 43 * i))
