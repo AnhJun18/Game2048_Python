@@ -39,13 +39,16 @@ def updatediem(plus):
     font = pygame.font.SysFont('Bahnschrift', 15)
     text = font.render(str(souce), True, (0, 0, 0))
     menuScreen.blit(text, (220, 18))
+
+
 def getbest():
     file = open('bangxephang.txt')
-    best=int(file.readline())
+    best = int(file.readline())
     pygame.draw.rect(menuScreen, BG_TEXT, (400, 10, 90, 40), )
     font = pygame.font.SysFont('Bahnschrift', 15)
     text = font.render(str(best), True, (0, 0, 0))
     menuScreen.blit(text, (400, 18))
+
 
 def dichtrai(ds):
     dsdadichchuyen = []
@@ -221,7 +224,7 @@ def isWin(ds):
 def updateBXH(souce):
     files = open('bangxephang.txt')
     list = files.readlines()
-    if (int(list[len(list) - 1]) >= souce):
+    if (len(list) == 10 and int(list[len(list) - 1]) >= souce):
         return
     files = open('bangxephang.txt', 'w')
     list.append(str(souce) + '\n')
@@ -283,7 +286,7 @@ if __name__ == '__main__':
                     modes["Home"] = False
                 if WIDTH / 2 - 125 <= mouse[0] <= (WIDTH / 2 - 125 + 250) and 440 <= mouse[1] <= 490 and modes[
                     "Home"] == True:
-                    running=False
+                    running = False
                 if 22 <= mouse[0] <= 66 and 12 <= mouse[1] <= 52 and modes["Home"] == False:
                     if game_over:
                         musicHome.play()
@@ -291,7 +294,7 @@ if __name__ == '__main__':
                     setMenuScreen(menuScreen)
                     modes["Home"] = True
 
-                if 69 <= mouse[0] <= 109 and 10 <= mouse[1] <= 50 and modes["Play"] == True:
+                if 69 <= mouse[0] <= 109 and 10 <= mouse[1] <= 50 and modes["Home"] == False:
                     if game_over:
                         musicHome.play()
                         game_over = False
@@ -302,7 +305,7 @@ if __name__ == '__main__':
                     background(menuScreen)
                     drawBlock(menuScreen, ds)
                     pygame.display.update()
-            if event.type == pygame.KEYDOWN and modes["Play"]== True:
+            if event.type == pygame.KEYDOWN and modes["Play"] == True:
                 dichuyen = False
                 if event.key == pygame.K_LEFT:
                     dichuyen = dichtrai(ds)
