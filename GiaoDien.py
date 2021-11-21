@@ -20,13 +20,19 @@ def setMenuScreen(menuScreen):
     menuScreen.blit(bg, (120, 100))
 
     pygame.draw.rect(menuScreen, BG_BLOCK, (WIDTH / 2 - 125, 300, 250, 50), border_radius=8)
-    playgame(menuScreen)
+    font = pygame.font.SysFont('Bahnschrift', 32)
+    text = font.render('Play Game', True, (0, 0, 0))
+    menuScreen.blit(text, (WIDTH / 2 - 65, 302))
 
     pygame.draw.rect(menuScreen, BG_BLOCK, (WIDTH / 2 - 125, 370, 250, 50), border_radius=8)
-    rank(menuScreen)
+    font = pygame.font.SysFont('Bahnschrift', 32)
+    text = font.render('Rank', True, (0, 0, 0))
+    menuScreen.blit(text, (WIDTH / 2 - 30, 375))
 
     pygame.draw.rect(menuScreen, BG_BLOCK, (WIDTH / 2 - 125, 440, 250, 50), border_radius=8)
-    drawquit(menuScreen)
+    font = pygame.font.SysFont('Bahnschrift', 32)
+    text = font.render('Quit', True, (0, 0, 0))
+    menuScreen.blit(text, (WIDTH / 2 - 30, 445))
 
 
 def thanhcongcu(menuScreen: pygame.Surface):
@@ -88,9 +94,9 @@ def drawmh(menuScreen: pygame.Surface, ds):
 def drawgameover(menuScreen: pygame.Surface):
     menuScreen1 = menuScreen.convert_alpha()
     menuScreen1.fill((255, 160, 122, 150))
-    font = pygame.font.Font('assets/fonts/ClearSans-Bold.ttf', 50)
+    font = pygame.font.Font('assets/fonts/ClearSans-Bold.ttf', 30)
     text = font.render('Game  Over', True, (0, 0, 10))
-    menuScreen1.blit(text, (135, 150))
+    menuScreen1.blit(text, (175, 200))
     menuScreen.blit(menuScreen1, (0, 60))
 def bangxephang(menuScreen: pygame.Surface,) -> None:
     menuScreen.fill((0,0,0))
@@ -106,35 +112,13 @@ def bangxephang(menuScreen: pygame.Surface,) -> None:
     file = open('BXH.txt')
     list = file.readlines()
     for i in range(len(list)):
-        if i < 3:
+        if i< 3:
             pygame.draw.rect(menuScreen, COLORBXH[i], (145, 90 + 43 * i, 240, 38), border_radius=10)
             font = pygame.font.SysFont('Bahnschrift', 20)
             text = font.render(list[i].rstrip(), True, (0, 0, 0))
             menuScreen.blit(text, (250, 93 + 43 * i))
-
-            if i == 0:
-                top1 = pygame.image.load('icon/top1.png')
-                menuScreen.blit(top1, (135, 86 + 43 * i))
-            elif i == 1:
-                top2 = pygame.image.load('icon/top2.png')
-                menuScreen.blit(top2, (140, 90 + 43 * i))
-            else:
-                top3 = pygame.image.load('icon/top3.png')
-                menuScreen.blit(top3, (145, 93 + 43 * i))
         else:
-            pygame.draw.rect(menuScreen, (240, 248, 255), (145, 90 + 43 * i, 240, 38), border_radius=10)
+            pygame.draw.rect(menuScreen, (240,248,255),(145, 90 + 43*i,240,38), border_radius=10)
             font = pygame.font.SysFont('Bahnschrift', 20)
             text = font.render(list[i].rstrip(), True, (0, 0, 0))
-            menuScreen.blit(text, (250, 93 + 43 * i))
-def playgame(menuScreen: pygame.Surface) -> None:
-    font = pygame.font.SysFont('assets/fonts/ClearSans-Bold.ttf', 40)
-    text = font.render('Play Game', True, (0, 0, 0))
-    menuScreen.blit(text, (WIDTH / 2 - 65, 310))
-def rank(menuScreen: pygame.Surface) -> None:
-    font = pygame.font.SysFont('assets/fonts/ClearSans-Bold.ttf', 40)
-    text = font.render('Rank', True, (0, 0, 0))
-    menuScreen.blit(text, (WIDTH / 2 - 30, 380))
-def drawquit(menuScreen: pygame.Surface) -> None:
-    font = pygame.font.SysFont('assets/fonts/ClearSans-Bold.ttf', 40)
-    text = font.render('Quit', True, (0, 0, 0))
-    menuScreen.blit(text, (WIDTH / 2 - 30, 450))
+            menuScreen.blit(text, (250, 93 + 43*i))
