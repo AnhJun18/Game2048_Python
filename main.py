@@ -1,5 +1,4 @@
 import random
-import pygame.mixer
 from GiaoDien import *
 from Define import *
 
@@ -40,7 +39,7 @@ def updatediem(plus):
 
 
 def getbest():
-    file = open('bangxephang.txt')
+    file = open('BXH.txt')
     best = int(file.readline())
     pygame.draw.rect(menuScreen, BG_TEXT, (400, 10, 90, 40), )
     font = pygame.font.SysFont('Bahnschrift', 15)
@@ -220,11 +219,11 @@ def isWin(ds):
 
 
 def updateBXH(souce):
-    files = open('bangxephang.txt')
+    files = open('BXH.txt')
     list = files.readlines()
     if (len(list) == 10 and int(list[len(list) - 1]) >= souce):
         return
-    files = open('bangxephang.txt', 'w')
+    files = open('BXH.txt', 'w')
     list.append(str(souce) + '\n')
     list = [int(i) for i in list]
     list.sort(reverse=True)
