@@ -1,7 +1,4 @@
 import random
-
-import pygame.mixer
-
 from GiaoDien import *
 from Define import *
 
@@ -11,7 +8,7 @@ def khoitao(ds):
         for j in range(4):
             ds[i][j] = 0
     for k in range(2):
-        add_khoi(ds);
+        add_khoi(ds)
 
 
 def add_khoi(ds):
@@ -42,7 +39,7 @@ def updatediem(plus):
 
 
 def getbest():
-    file = open('bangxephang.txt')
+    file = open('BXH.txt')
     best = int(file.readline())
     pygame.draw.rect(menuScreen, BG_TEXT, (400, 10, 90, 40), )
     font = pygame.font.SysFont('Bahnschrift', 15)
@@ -222,11 +219,11 @@ def isWin(ds):
 
 
 def updateBXH(souce):
-    files = open('bangxephang.txt')
+    files = open('BXH.txt')
     list = files.readlines()
     if (len(list) == 10 and int(list[len(list) - 1]) >= souce):
         return
-    files = open('bangxephang.txt', 'w')
+    files = open('BXH.txt', 'w')
     list.append(str(souce) + '\n')
     list = [int(i) for i in list]
     list.sort(reverse=True)
@@ -240,7 +237,7 @@ if __name__ == '__main__':
     ds = [[0 for i in range(4)] for j in range(4)]
     souce = 0
     khoitao(ds)
-    #  ds = [[2,4,8,16],[32,64,128,256],[512,1024,1024,0],[4096,0,0,0]]
+    # ds = [[2,4,8,16],[32,64,128,256],[512,1024,1024,0],[4096,0,0,0]]
     output_ds(ds)
     pygame.init()
     menuScreen = initWindown()
@@ -256,7 +253,8 @@ if __name__ == '__main__':
     game_over = False
     running = True
     modes = {"Play": False,
-             "Home": True
+             "Home": True,
+             "Bxh": False
              }
     win = False;
     while running:
@@ -278,23 +276,23 @@ if __name__ == '__main__':
                     if game_over:
                         drawgameover(menuScreen)
                         musicHome.stop()
-                        modes["Play"] = False
 
                 if WIDTH / 2 - 125 <= mouse[0] <= (WIDTH / 2 - 125 + 250) and 370 <= mouse[1] <= 420 and modes[
                     "Home"] == True:
                     bangxephang(menuScreen)
                     modes["Home"] = False
+                    modes["Bxh"] = True
                 if WIDTH / 2 - 125 <= mouse[0] <= (WIDTH / 2 - 125 + 250) and 440 <= mouse[1] <= 490 and modes[
                     "Home"] == True:
                     running = False
                 if 22 <= mouse[0] <= 66 and 12 <= mouse[1] <= 52 and modes["Home"] == False:
-                    if game_over:
+                    if game_over and modes["Play"]:
                         musicHome.play()
                     modes["Play"] = False
                     setMenuScreen(menuScreen)
                     modes["Home"] = True
 
-                if 69 <= mouse[0] <= 109 and 10 <= mouse[1] <= 50 and modes["Home"] == False:
+                if 69 <= mouse[0] <= 109 and 10 <= mouse[1] <= 50 and modes["Play"] == True:
                     if game_over:
                         musicHome.play()
                         game_over = False
@@ -305,7 +303,7 @@ if __name__ == '__main__':
                     background(menuScreen)
                     drawBlock(menuScreen, ds)
                     pygame.display.update()
-            if event.type == pygame.KEYDOWN and modes["Play"] == True:
+            if event.type == pygame.KEYDOWN and modes["Play"] == True and not game_over:
                 dichuyen = False
                 if event.key == pygame.K_LEFT:
                     dichuyen = dichtrai(ds)
@@ -328,7 +326,6 @@ if __name__ == '__main__':
                     musicHome.stop()
                     musicGameOver.play()
                     game_over = True
-                    modes["Play"] = False
                     drawgameover(menuScreen)
                     updateBXH(souce)
 

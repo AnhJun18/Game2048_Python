@@ -4,7 +4,7 @@ from Define import *
 
 def initWindown():
     menuScreen = pygame.display.set_mode((WIDTH, HEIGHT))
-    icon = pygame.image.load('icon/icon.png')
+    icon = pygame.image.load('assets/images/icon.png')
     pygame.display.set_icon(icon)
     pygame.display.set_caption('2048')
     menuScreen.fill(BG_SCREEN)
@@ -13,10 +13,10 @@ def initWindown():
 
 def setMenuScreen(menuScreen):
     menuScreen.fill(BG_SCREEN)
-    game = pygame.image.load('icon/Game_led1.png')
+    game = pygame.image.load('assets/images/gameled.png')
     menuScreen.blit(game, (120, 0))
 
-    bg = pygame.image.load('icon/bg.png')
+    bg = pygame.image.load('assets/images/logo.png')
     menuScreen.blit(bg, (120, 100))
 
     pygame.draw.rect(menuScreen, BG_BLOCK, (WIDTH / 2 - 125, 300, 250, 50), border_radius=8)
@@ -32,11 +32,11 @@ def setMenuScreen(menuScreen):
 def thanhcongcu(menuScreen: pygame.Surface):
     pygame.draw.rect(menuScreen, BG_SCREEN, (0, 0, 530, 60), border_radius=8)
     pygame.draw.rect(menuScreen, BG_BLOCK, (20, 10, 40, 40), border_radius=8)
-    home = pygame.image.load('icon/Home.png')
+    home = pygame.image.load('assets/images/home.png')
     menuScreen.blit(home, (22, 12))
 
     pygame.draw.rect(menuScreen, BG_BLOCK, (70, 10, 40, 40), border_radius=8)
-    home = pygame.image.load('icon/reset.png')
+    home = pygame.image.load('assets/images/reset.png')
     menuScreen.blit(home, (69, 10))
 
     # khung in điểm hiện tại
@@ -96,14 +96,14 @@ def bangxephang(menuScreen: pygame.Surface,) -> None:
     menuScreen.fill((0,0,0))
     pygame.draw.rect(menuScreen, (102, 205, 170), (100, 60, 330, 460))
     pygame.draw.rect(menuScreen, (176, 224, 230), (180, 30, 170, 50), border_radius=8)
-    game = pygame.image.load('icon/top10.png')
+    game = pygame.image.load('assets/images/topbxh.png')
     menuScreen.blit(game, (200, 30))
 
     pygame.draw.rect(menuScreen, BG_BLOCK, (20, 10, 40, 40), border_radius=8)
-    home = pygame.image.load('icon/Home.png')
+    home = pygame.image.load('assets/images/home.png')
     menuScreen.blit(home, (22, 12))
 
-    file = open('bangxephang.txt')
+    file = open('BXH.txt')
     list = file.readlines()
     for i in range(len(list)):
         if i < 3:
