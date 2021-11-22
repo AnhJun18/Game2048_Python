@@ -259,7 +259,7 @@ if __name__ == '__main__':
     ds = [[0 for i in range(4)] for j in range(4)]
     souce = 0
     khoitao(ds)
-    # ds = [[2,4,8,16],[32,64,128,256],[512,1024,1024,0],[4096,0,0,0]]
+    # ds = [[32,4,0,0],[512,256,8,0],[2048,64,4,0],[128,32,2,2]]
     output_ds(ds)
     pygame.init()
     menuScreen = initWindown()
@@ -283,7 +283,6 @@ if __name__ == '__main__':
         clock.tick(40)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                updateBXH(souce)
                 running = False
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if WIDTH / 2 - 125 <= mouse[0] <= (WIDTH / 2 - 125 + 250) and 300 <= mouse[1] <= 350 and modes[
