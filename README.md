@@ -5,7 +5,7 @@
 
     ![](assets/images/a.png)
 
-#Installation
+# Installation
   
   - chắc chắn rằng bạn đã cài môi trường lập trình python 3 
   - bạn có thể cài đặt pygame bằng pip:
@@ -22,7 +22,7 @@
   - chạy chương trình bằng file run.sh
   - hoặc là chạy với lệnh command python main.py
 
-#Introduction
+# Introduction
  - kick chuột vào " play game " để bắt đầu trò chơi.
       + sử dụng các phím mũi tên để di chuyển các khối
       + kick chuột vào biểu tượng ![](assets/images/home2.png) trên màn hình để quay lại màn hình chính
@@ -30,12 +30,12 @@
  - kick chuột vào " rank " để xem bảng xếp hạng 
  - kick chuột vào " quit " hoặc dấu "X" để thoát khỏi trò chơi
 
-#Contributors
+# Contributors
  
  - AnhJun18 - Lê Phương Anh
  - vyhoang0708 - Lê Hoàng Cẩm Vy
 
-#ScreensHot
+# ScreensHot
  ![](assets/images/readme.png)
  ![](assets/images/readme2.png)
  ![](assets/images/readme3.png)
