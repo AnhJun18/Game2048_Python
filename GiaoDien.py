@@ -93,7 +93,7 @@ def drawgameover(menuScreen: pygame.Surface):
     menuScreen1.blit(text, (175, 200))
     menuScreen.blit(menuScreen1, (0, 60))
 def bangxephang(menuScreen: pygame.Surface,) -> None:
-    menuScreen.fill((0,0,0))
+    menuScreen.fill((20, 20, 40))
     pygame.draw.rect(menuScreen, (102, 205, 170), (100, 60, 330, 460))
     pygame.draw.rect(menuScreen, (176, 224, 230), (180, 30, 170, 50), border_radius=8)
     game = pygame.image.load('assets/images/topbxh.png')
