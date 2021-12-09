@@ -2,22 +2,19 @@ import random
 from GiaoDien import *
 from Define import *
 
-
-def khoitao(ds):
+def init_matrix(ds):
     for i in range(4):
         for j in range(4):
             ds[i][j] = 0
     for k in range(2):
-        add_khoi(ds)
+        add_block(ds)
 
-
-def add_khoi(ds):
+def add_block(ds):
     while True:
         i = random.randint(0, 3)
         j = random.randint(0, 3)
         if (ds[i][j] == 0):
             break
-
     ds[i][j] = random.choice(VAL_CHOICE)
 
 
@@ -29,7 +26,7 @@ def output_ds(ds):
         print()
 
 
-def updatediem(plus):
+def update_diem(plus):
     global souce
     souce += plus
     pygame.draw.rect(menuScreen, BG_TEXT, (220, 10, 90, 40), )
@@ -47,7 +44,7 @@ def getbest():
     menuScreen.blit(text, (400, 18))
 
 
-def dichtrai(ds):
+def move_left(ds):
     dsdadichchuyen = []
     codichchuyen = False
     for i in range(4):
@@ -71,7 +68,7 @@ def dichtrai(ds):
                     ds[x][y] *= 2
                     ds[i][j] = 0
                     dsdadichchuyen.append((x, y))
-                    updatediem(ds[x][y])
+                    update_diem(ds[x][y])
                     codichchuyen = True
                 elif (y + 1 != j):
                     ds[x][y + 1] = ds[i][j]
@@ -80,7 +77,7 @@ def dichtrai(ds):
     return codichchuyen
 
 
-def dichphai(ds):
+def move_right(ds):
     dsdadichchuyen = []
     codichchuyen = False
     for i in range(4):
@@ -104,7 +101,7 @@ def dichphai(ds):
                     ds[x][y] *= 2
                     ds[i][j] = 0
                     dsdadichchuyen.append((x, y))
-                    updatediem(ds[x][y])
+                    update_diem(ds[x][y])
                     codichchuyen = True
                 elif (y - 1 != j):
                     ds[x][y - 1] = ds[i][j]
@@ -114,7 +111,7 @@ def dichphai(ds):
     return codichchuyen
 
 
-def dichlen(ds):
+def move_up(ds):
     dsdadichchuyen = []
     codichchuyen = False
     for j in range(4):
@@ -138,7 +135,7 @@ def dichlen(ds):
                     ds[x][y] *= 2
                     ds[i][j] = 0
                     dsdadichchuyen.append((x, y))
-                    updatediem(ds[x][y])
+                    update_diem(ds[x][y])
                     codichchuyen = True
                 elif (x + 1 != i):
                     ds[x + 1][j] = ds[i][j]
@@ -147,7 +144,7 @@ def dichlen(ds):
     return codichchuyen
 
 
-def dichxuong(ds):
+def move_down(ds):
     dsdadichchuyen = []
     codichchuyen = False
     for j in range(4):
@@ -172,7 +169,7 @@ def dichxuong(ds):
                     ds[x][y] *= 2
                     ds[i][j] = 0
                     dsdadichchuyen.append((x, y))
-                    updatediem(ds[x][y])
+                    update_diem(ds[x][y])
                     codichchuyen = True
                 elif (x - 1 != i):
                     ds[x - 1][j] = ds[i][j]
@@ -181,7 +178,7 @@ def dichxuong(ds):
     return codichchuyen
 
 
-def khongTheDiChuyen(ds):
+def cannot_move(ds):
     for i in range(4):
         for j in range(4):
             if ds[i][j] == 0:
@@ -232,6 +229,7 @@ def updateBXH(souce):
     list = [str(i) + '\n' for i in list]
     files.writelines(list)
 
+
 def change(menuScreen: pygame.Surface, mouse: pygame.mouse, modes):
     if modes["Play"] == False and modes["Home"] == True:
         if WIDTH / 2 - 125 <= mouse[0] <= (WIDTH / 2 - 125 + 250) and 300 <= mouse[1] <= 350:
@@ -255,11 +253,12 @@ def change(menuScreen: pygame.Surface, mouse: pygame.mouse, modes):
             pygame.draw.rect(menuScreen, BG_BLOCK, (WIDTH / 2 - 125, 440, 250, 50), border_radius=8)
             drawquit(menuScreen)
 
+
 if __name__ == '__main__':
     ds = [[0 for i in range(4)] for j in range(4)]
     souce = 0
-    khoitao(ds)
-    # ds = [[32,4,0,0],[512,256,8,0],[2048,64,4,0],[128,32,2,2]]
+    init_matrix(ds)
+    # ds = [[32, 4, 0, 0], [512, 256, 8, 0], [2048, 64, 4, 0], [128, 32, 2, 2]]
     output_ds(ds)
     pygame.init()
     menuScreen = initWindown()
@@ -292,7 +291,7 @@ if __name__ == '__main__':
                     drawBlock(menuScreen, ds)
                     modes["Home"] = False
                     modes["Play"] = True
-                    updatediem(0)
+                    update_diem(0)
                     getbest()
                     if game_over:
                         drawgameover(menuScreen)
@@ -318,8 +317,8 @@ if __name__ == '__main__':
                         musicHome.play()
                         game_over = False
                     souce = 0
-                    khoitao(ds)
-                    updatediem(0)
+                    init_matrix(ds)
+                    update_diem(0)
                     getbest()
                     background(menuScreen)
                     drawBlock(menuScreen, ds)
@@ -327,15 +326,17 @@ if __name__ == '__main__':
             if event.type == pygame.KEYDOWN and modes["Play"] == True and not game_over:
                 dichuyen = False
                 if event.key == pygame.K_LEFT:
-                    dichuyen = dichtrai(ds)
+                    dichuyen = move_left(ds)
                 elif event.key == pygame.K_RIGHT:
-                    dichuyen = dichphai(ds)
+                    dichuyen = move_right(ds)
                 elif event.key == pygame.K_UP:
-                    dichuyen = dichlen(ds)
+                    dichuyen = move_up(ds)
                 elif event.key == pygame.K_DOWN:
-                    dichuyen = dichxuong(ds)
+                    dichuyen = move_down(ds)
+                if dichuyen == False:
+                    continue
                 if not isFull(ds) and dichuyen == True:
-                    add_khoi(ds)
+                    add_block(ds)
                 if isWin(ds) and win == False:
                     musicWin.play()
                     win = True
@@ -343,7 +344,7 @@ if __name__ == '__main__':
                 output_ds(ds)
                 drawmh(menuScreen, ds)
 
-                if khongTheDiChuyen(ds) and dichuyen == True:
+                if cannot_move(ds) and dichuyen == True:
                     musicHome.stop()
                     musicGameOver.play()
                     game_over = True
@@ -353,5 +354,5 @@ if __name__ == '__main__':
             else:
                 continue
         mouse = pygame.mouse.get_pos()
-        change(menuScreen,mouse, modes)
+        change(menuScreen, mouse, modes)
         pygame.display.update()

@@ -28,9 +28,10 @@
  - AnhJun18 - Lê Phương Anh
  - vyhoang0708 - Lê Hoàng Cẩm Vy
 
-# ScreensHot
+# Screenshot
  ![](assets/images/readme.png)
  ![](assets/images/readme2.png)
  ![](assets/images/readme3.png)
  ![](assets/images/readme4.png)
  ![](assets/images/readme1.png)
+
