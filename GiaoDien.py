@@ -138,3 +138,12 @@ def drawquit(menuScreen: pygame.Surface) -> None:
     font = pygame.font.SysFont('assets/fonts/ClearSans-Bold.ttf', 40)
     text = font.render('Quit', True, (0, 0, 0))
     menuScreen.blit(text, (WIDTH / 2 - 30, 450))
+
+def drawmusic(menuScreen: pygame.Surface) -> None:
+    pygame.draw.rect(menuScreen, BG_BLOCK, (14, 15, 40, 40), border_radius=8)
+    home = pygame.image.load('assets/images/unmute.png')
+    menuScreen.blit(home, (18, 20))
+def drawmute(menuScreen: pygame.Surface) -> None:
+    pygame.draw.rect(menuScreen, BG_BLOCK, (14, 15, 40, 40), border_radius=8)
+    home = pygame.image.load('assets/images/mute.png')
+    menuScreen.blit(home, (18, 20))

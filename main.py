@@ -38,7 +38,7 @@ def update_diem(plus):
 def getbest():
     file = open('BXH.txt')
     best = int(file.readline())
-    pygame.draw.rect(menuScreen, BG_TEXT, (400, 10, 90, 40), )
+    pygame.draw.rect(menuScreen, BG_TEXT, (400, 10, 70, 40), )
     font = pygame.font.SysFont('Bahnschrift', 15)
     text = font.render(str(best), True, (0, 0, 0))
     menuScreen.blit(text, (400, 18))
@@ -261,6 +261,7 @@ if __name__ == '__main__':
     # ds = [[32, 4, 0, 0], [512, 256, 8, 0], [2048, 64, 4, 0], [128, 32, 2, 2]]
     output_ds(ds)
     pygame.init()
+
     menuScreen = initWindown()
     setMenuScreen(menuScreen)
     pygame.display.update()
@@ -269,8 +270,9 @@ if __name__ == '__main__':
     musicHome = audio('assets/music/SoundTheme.mp3')
     musicGameOver = audio('./assets/music/MusicGameOver.mp3')
     musicWin = audio('./assets/music/MusicWin.mp3')
+    isplaymusic = True;
+    drawmusic(menuScreen)
     musicHome.play(10)
-
     game_over = False
     running = True
     modes = {"Play": False,
@@ -296,7 +298,16 @@ if __name__ == '__main__':
                     if game_over:
                         drawgameover(menuScreen)
                         musicHome.stop()
-
+                if 14 <= mouse[0] <= 54 and 15 <= mouse[1] <= 55 and modes[
+                    "Home"] == True:
+                    if(isplaymusic):
+                        isplaymusic=False
+                        drawmute(menuScreen)
+                        musicHome.stop()
+                    else:
+                        isplaymusic = True
+                        drawmusic(menuScreen)
+                        musicHome.play(10)
                 if WIDTH / 2 - 125 <= mouse[0] <= (WIDTH / 2 - 125 + 250) and 370 <= mouse[1] <= 420 and modes[
                     "Home"] == True:
                     bangxephang(menuScreen)
@@ -310,6 +321,11 @@ if __name__ == '__main__':
                         musicHome.play()
                     modes["Play"] = False
                     setMenuScreen(menuScreen)
+                    if(isplaymusic):
+                        drawmusic(menuScreen)
+                    else:
+                        drawmute(menuScreen)
+
                     modes["Home"] = True
 
                 if 69 <= mouse[0] <= 109 and 10 <= mouse[1] <= 50 and modes["Play"] == True:
