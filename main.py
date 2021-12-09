@@ -65,7 +65,7 @@ def move_left(ds):
                 codichchuyen = True
             else:
                 if ds[i][j] == ds[x][y] and (x, y) not in dsdadichchuyen:
-                    ds[x][y] *= 2;
+                    ds[x][y] *= 2
                     ds[i][j] = 0
                     dsdadichchuyen.append((x, y))
                     update_diem(ds[x][y])
@@ -98,7 +98,7 @@ def move_right(ds):
                 codichchuyen = True
             else:
                 if ds[i][j] == ds[x][y] and (x, y) not in dsdadichchuyen:
-                    ds[x][y] *= 2;
+                    ds[x][y] *= 2
                     ds[i][j] = 0
                     dsdadichchuyen.append((x, y))
                     update_diem(ds[x][y])
@@ -132,7 +132,7 @@ def move_up(ds):
                 codichchuyen = True
             else:
                 if ds[i][j] == ds[x][y] and (x, y) not in dsdadichchuyen:
-                    ds[x][y] *= 2;
+                    ds[x][y] *= 2
                     ds[i][j] = 0
                     dsdadichchuyen.append((x, y))
                     update_diem(ds[x][y])
@@ -166,7 +166,7 @@ def move_down(ds):
                 codichchuyen = True
             else:
                 if ds[i][j] == ds[x][y] and (x, y) not in dsdadichchuyen:
-                    ds[x][y] *= 2;
+                    ds[x][y] *= 2
                     ds[i][j] = 0
                     dsdadichchuyen.append((x, y))
                     update_diem(ds[x][y])
@@ -277,7 +277,7 @@ if __name__ == '__main__':
              "Home": True,
              "Bxh": False
              }
-    win = False;
+    win = False
     while running:
         clock.tick(40)
         for event in pygame.event.get():
