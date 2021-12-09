@@ -68,7 +68,7 @@ def dichtrai(ds):
                 codichchuyen = True
             else:
                 if ds[i][j] == ds[x][y] and (x, y) not in dsdadichchuyen:
-                    ds[x][y] *= 2;
+                    ds[x][y] *= 2
                     ds[i][j] = 0
                     dsdadichchuyen.append((x, y))
                     updatediem(ds[x][y])
@@ -101,7 +101,7 @@ def dichphai(ds):
                 codichchuyen = True
             else:
                 if ds[i][j] == ds[x][y] and (x, y) not in dsdadichchuyen:
-                    ds[x][y] *= 2;
+                    ds[x][y] *= 2
                     ds[i][j] = 0
                     dsdadichchuyen.append((x, y))
                     updatediem(ds[x][y])
@@ -135,7 +135,7 @@ def dichlen(ds):
                 codichchuyen = True
             else:
                 if ds[i][j] == ds[x][y] and (x, y) not in dsdadichchuyen:
-                    ds[x][y] *= 2;
+                    ds[x][y] *= 2
                     ds[i][j] = 0
                     dsdadichchuyen.append((x, y))
                     updatediem(ds[x][y])
@@ -169,7 +169,7 @@ def dichxuong(ds):
                 codichchuyen = True
             else:
                 if ds[i][j] == ds[x][y] and (x, y) not in dsdadichchuyen:
-                    ds[x][y] *= 2;
+                    ds[x][y] *= 2
                     ds[i][j] = 0
                     dsdadichchuyen.append((x, y))
                     updatediem(ds[x][y])
@@ -278,7 +278,7 @@ if __name__ == '__main__':
              "Home": True,
              "Bxh": False
              }
-    win = False;
+    win = False
     while running:
         clock.tick(40)
         for event in pygame.event.get():

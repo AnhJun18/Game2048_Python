@@ -8,16 +8,9 @@
 # Installation
   
   - chắc chắn rằng bạn đã cài môi trường lập trình python 3 
-  - bạn có thể cài đặt pygame bằng pip:
-
-     + với windows
-       - $ py -m pip install -U pygame --user
-       - $ py -m pygame.examples.aliens
-     + với Mac
-        - $ python3 -m pip install -U pygame --user
-     + với linux
-        - $ sudo apt-get install python3-pygame
-        - $ python3 -m pygame.examples.aliens
+  - bạn có thể cài đặt pygame bằng pip trên các hệ điều hành windows, Mac và linux:
+  
+       - $ pip install pygame
        
   - chạy chương trình bằng file run.sh
   - hoặc là chạy với lệnh command python main.py
