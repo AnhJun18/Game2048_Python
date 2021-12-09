@@ -232,6 +232,7 @@ def updateBXH(souce):
     list = [str(i) + '\n' for i in list]
     files.writelines(list)
 
+
 def change(menuScreen: pygame.Surface, mouse: pygame.mouse, modes):
     if modes["Play"] == False and modes["Home"] == True:
         if WIDTH / 2 - 125 <= mouse[0] <= (WIDTH / 2 - 125 + 250) and 300 <= mouse[1] <= 350:
@@ -255,11 +256,12 @@ def change(menuScreen: pygame.Surface, mouse: pygame.mouse, modes):
             pygame.draw.rect(menuScreen, BG_BLOCK, (WIDTH / 2 - 125, 440, 250, 50), border_radius=8)
             drawquit(menuScreen)
 
+
 if __name__ == '__main__':
     ds = [[0 for i in range(4)] for j in range(4)]
     souce = 0
     khoitao(ds)
-    # ds = [[32,4,0,0],[512,256,8,0],[2048,64,4,0],[128,32,2,2]]
+    ds = [[32, 4, 0, 0], [512, 256, 8, 0], [2048, 64, 4, 0], [128, 32, 2, 2]]
     output_ds(ds)
     pygame.init()
     menuScreen = initWindown()
@@ -334,6 +336,8 @@ if __name__ == '__main__':
                     dichuyen = dichlen(ds)
                 elif event.key == pygame.K_DOWN:
                     dichuyen = dichxuong(ds)
+                if dichuyen == False:
+                    continue
                 if not isFull(ds) and dichuyen == True:
                     add_khoi(ds)
                 if isWin(ds) and win == False:
@@ -353,5 +357,5 @@ if __name__ == '__main__':
             else:
                 continue
         mouse = pygame.mouse.get_pos()
-        change(menuScreen,mouse, modes)
+        change(menuScreen, mouse, modes)
         pygame.display.update()
