@@ -1,6 +1,8 @@
 import random
+
 from GiaoDien import *
 from Define import *
+
 
 def init_matrix(ds):
     for i in range(4):
@@ -8,6 +10,7 @@ def init_matrix(ds):
             ds[i][j] = 0
     for k in range(2):
         add_block(ds)
+
 
 def add_block(ds):
     while True:
@@ -230,7 +233,7 @@ def updateBXH(souce):
     files.writelines(list)
 
 
-def change(menuScreen: pygame.Surface, mouse: pygame.mouse, modes):
+def hover_move(menuScreen: pygame.Surface, mouse: pygame.mouse, modes):
     if modes["Play"] == False and modes["Home"] == True:
         if WIDTH / 2 - 125 <= mouse[0] <= (WIDTH / 2 - 125 + 250) and 300 <= mouse[1] <= 350:
             pygame.draw.rect(menuScreen, BG_BLOCK2, (WIDTH / 2 - 125, 300, 250, 50), border_radius=8)
@@ -264,24 +267,28 @@ if __name__ == '__main__':
 
     menuScreen = initWindown()
     setMenuScreen(menuScreen)
+    drawsound(menuScreen)
+
     pygame.display.update()
     clock = pygame.time.Clock()
+
     audio = pygame.mixer.Sound
     musicHome = audio('assets/music/SoundTheme.mp3')
     musicGameOver = audio('./assets/music/MusicGameOver.mp3')
     musicWin = audio('./assets/music/MusicWin.mp3')
     isplaymusic = True;
-    drawmusic(menuScreen)
     musicHome.play(10)
+
     game_over = False
+    win = False
     running = True
     modes = {"Play": False,
              "Home": True,
              "Bxh": False
              }
-    win = False
+
     while running:
-        clock.tick(40)
+        clock.tick(FPS)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
@@ -300,13 +307,13 @@ if __name__ == '__main__':
                         musicHome.stop()
                 if 14 <= mouse[0] <= 54 and 15 <= mouse[1] <= 55 and modes[
                     "Home"] == True:
-                    if(isplaymusic):
-                        isplaymusic=False
+                    if (isplaymusic):
+                        isplaymusic = False
                         drawmute(menuScreen)
                         musicHome.stop()
                     else:
                         isplaymusic = True
-                        drawmusic(menuScreen)
+                        drawsound(menuScreen)
                         musicHome.play(10)
                 if WIDTH / 2 - 125 <= mouse[0] <= (WIDTH / 2 - 125 + 250) and 370 <= mouse[1] <= 420 and modes[
                     "Home"] == True:
@@ -317,12 +324,12 @@ if __name__ == '__main__':
                     "Home"] == True:
                     running = False
                 if 22 <= mouse[0] <= 66 and 12 <= mouse[1] <= 52 and modes["Home"] == False:
-                    if game_over and modes["Play"]:
+                    if game_over and modes["Play"] and isplaymusic:
                         musicHome.play()
                     modes["Play"] = False
                     setMenuScreen(menuScreen)
-                    if(isplaymusic):
-                        drawmusic(menuScreen)
+                    if (isplaymusic):
+                        drawsound(menuScreen)
                     else:
                         drawmute(menuScreen)
 
@@ -330,7 +337,8 @@ if __name__ == '__main__':
 
                 if 69 <= mouse[0] <= 109 and 10 <= mouse[1] <= 50 and modes["Play"] == True:
                     if game_over:
-                        musicHome.play()
+                        if (isplaymusic):
+                            musicHome.play()
                         game_over = False
                     souce = 0
                     init_matrix(ds)
@@ -351,18 +359,20 @@ if __name__ == '__main__':
                     dichuyen = move_down(ds)
                 if dichuyen == False:
                     continue
-                if not isFull(ds) and dichuyen == True:
+                if not isFull(ds):
                     add_block(ds)
-                if isWin(ds) and win == False:
-                    musicWin.play()
-                    win = True
-
                 output_ds(ds)
                 drawmh(menuScreen, ds)
-
-                if cannot_move(ds) and dichuyen == True:
-                    musicHome.stop()
-                    musicGameOver.play()
+                if isWin(ds) and win == False:
+                    if (isplaymusic):
+                        musicWin.play()
+                    draw_win(menuScreen)
+                    drawmh(menuScreen, ds)
+                    win = True
+                if cannot_move(ds):
+                    if (isplaymusic):
+                        musicHome.stop()
+                        musicGameOver.play()
                     game_over = True
                     drawgameover(menuScreen)
                     updateBXH(souce)
@@ -370,5 +380,5 @@ if __name__ == '__main__':
             else:
                 continue
         mouse = pygame.mouse.get_pos()
-        change(menuScreen, mouse, modes)
+        hover_move(menuScreen, mouse, modes)
         pygame.display.update()
