@@ -261,7 +261,7 @@ if __name__ == '__main__':
     ds = [[0 for i in range(4)] for j in range(4)]
     souce = 0
     init_matrix(ds)
-    ds = [[32, 4, 0, 0], [512, 256, 8, 0], [2048, 64, 4, 0], [128, 32, 2, 2]]
+    # ds = [[32, 4, 0, 0], [512, 256, 8, 0], [2048, 64, 4, 0], [128, 32, 2, 2]]
     output_ds(ds)
     pygame.init()
 
