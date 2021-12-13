@@ -1,8 +1,13 @@
 # Game 2048_Python
-- Dựa trên trò chơi nổi tiếng 2048 của `Gabriele Cirulli`. Mục tiêu của trò chơi là trượt các khối được đánh số trên một lưới để kết hợp chúng lại với nhau tạo ra khối 2048.
+- Dựa trên trò chơi nổi tiếng 2048 của `Gabriele Cirulli`. Mục tiêu của trò chơi là trượt các khối được đánh số trên một lưới để kết hợp chúng lại với nhau tạo ra khối 2
 - Đây là phiên bản Python sử dụng thư viện Pygame.
 
     ![](assets/images/a.png)
+
+# Contributors
+ - GVHD: `Nguyễn Thị Tuyết Hải`
+ - AnhJun18 - `Lê Phương Anh`
+ - vyhoang0708 - `Lê Hoàng Cẩm Vy`
 
 # Installation
   
@@ -22,12 +27,7 @@
       
  - Click chuột vào `Rank ` để xem bảng xếp hạng 
  - Click chuột vào ` Quit ` hoặc dấu `X` để thoát khỏi trò chơi
-
-# Contributors
  
- - AnhJun18 - `Lê Phương Anh`
- - vyhoang0708 - `Lê Hoàng Cẩm Vy`
-
 # Screenshot
  ![](assets/images/readme.png)
  ![](assets/images/readme2.png)
